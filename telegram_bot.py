@@ -1,19 +1,21 @@
 import requests
 import json
 import datetime
+import pytz  # Import thư viện pytz để làm việc với múi giờ
 import asyncio
 
 from time import sleep
 from telegram import Bot
 
 api_telegram_TOKEN = '5848712014:AAHb0BppwOWo54aSp_rlOE8_uQkpJl01GRY'
+vietnam_timezone = pytz.timezone('Asia/Ho_Chi_Minh')
 
 async def send_to_telegram_suspended(text):
     #chat_id = '-1001915546898' #462_immi_autocall
     #chat_ids = ['-656277664', '-1001987376002',] #group 2, 462 immi bot bật thông báo
     chat_ids = ['-710009970'] #group premium
 
-    now = datetime.datetime.now()
+    now = datetime.datetime.now(vietnam_timezone)
     #date_str = now.strftime("%Y-%m-%d")
     date_str = now.strftime("%d/%m/%Y")
     time_str = now.strftime("%H:%M:%S")
@@ -46,7 +48,6 @@ async def send_and_delete(text):
     await asyncio.sleep(1)
     for chat_id in chat_ids:
         await bot.delete_message(chat_id=chat_id, message_id=message_id)
-
 
 
 
