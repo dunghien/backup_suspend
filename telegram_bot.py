@@ -49,10 +49,10 @@ async def send_and_delete(text):
     for chat_id in chat_ids:
         await bot.delete_message(chat_id=chat_id, message_id=message_id)
 
-async def send_admin_message(text):
+def send_admin_message(text):
     #chat_id = '-1001915546898' #462_immi_autocall
     #chat_ids = ['-656277664', '-1001987376002',] #group 2, 462 immi bot bật thông báo
-    chat_ids = ['-1001986922268'] #group admin
+    chat_id = '-1001986922268' #group admin
 
     now = datetime.datetime.now(vietnam_timezone)
     #date_str = now.strftime("%Y-%m-%d")
@@ -60,9 +60,8 @@ async def send_admin_message(text):
     time_str = now.strftime("%H:%M:%S")
     text_with_timestamp = f"{text}\n🔴{date_str} {time_str}"
     
-    bot = Bot(token=api_telegram_TOKEN)
-    for chat_id in chat_ids:
-        message = await bot.send_message(chat_id=chat_id, text=text_with_timestamp, timeout = 10)
+    url_req = f"https://api.telegram.org/bot{api_telegram_TOKEN}/sendMessage?chat_id={chat_id}&text={text_with_timestamp}"
+    results = requests.get(url_req)
 
 
 
