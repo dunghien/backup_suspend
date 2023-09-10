@@ -23,7 +23,7 @@ async def send_to_telegram_suspended(text):
     
     bot = Bot(token=api_telegram_TOKEN)
     for chat_id in chat_ids:
-        message = await bot.send_message(chat_id=chat_id, text=text_with_timestamp, timeout=10)
+        message = await bot.send_message(chat_id=chat_id, text=text_with_timestamp)
 
 #async def send_and_delete(text):
 #    await send_to_telegram_suspended(text)
@@ -33,7 +33,7 @@ async def send_and_delete(text):
     #chat_ids = ['-888905818'] #group test call
     chat_ids = ['-1001877646068'] #Bot_canh_462_immi_1m
 
-    now = datetime.datetime.now()
+    now = datetime.datetime.now(vietnam_timezone)
     #date_str = now.strftime("%Y-%m-%d")
     date_str = now.strftime("%d/%m/%Y")
     time_str = now.strftime("%H:%M:%S")
@@ -41,7 +41,7 @@ async def send_and_delete(text):
     
     bot = Bot(token=api_telegram_TOKEN)
     for chat_id in chat_ids:
-        message = await bot.send_message(chat_id=chat_id, text=text_with_timestamp, timeout=10)
+        message = await bot.send_message(chat_id=chat_id, text=text_with_timestamp)
 
     #Lấy ID của tin nhắn để xóa sau đó
     message_id = message.message_id
