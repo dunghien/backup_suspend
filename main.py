@@ -13,6 +13,6 @@ while True:
     except Exception as ex:
         print('Try send suspended, Error:', ex)
         send_admin_message('🔴Exception block: Try send backup_suspended')
-        
+        time.sleep(5)
     # Chờ một khoảng thời gian trước khi thử lại (ví dụ: 10 giây)
-    time.sleep(10)
+    time.sleep(30)
