@@ -13,7 +13,7 @@ vietnam_timezone = pytz.timezone('Asia/Ho_Chi_Minh')
 async def send_to_telegram_suspended(text):
     #chat_id = '-1001915546898' #462_immi_autocall
     #chat_ids = ['-656277664', '-1001987376002',] #group 2, 462 immi bot bật thông báo
-    chat_ids = ['-710009970'] #group premium
+    chat_id = '-710009970' #group premium
 
     now = datetime.datetime.now(vietnam_timezone)
     #date_str = now.strftime("%Y-%m-%d")
@@ -22,8 +22,8 @@ async def send_to_telegram_suspended(text):
     text_with_timestamp = f"{text}\n🔴{date_str} {time_str}"
     
     bot = Bot(token=api_telegram_TOKEN)
-    for chat_id in chat_ids:
-        message = await bot.send_message(chat_id=chat_id, text=text_with_timestamp)
+    url_req = f"https://api.telegram.org/bot{api_telegram_TOKEN}/sendMessage?chat_id={chat_id}&text={text_with_timestamp}"
+    results = requests.get(url_req)
 
 #async def send_and_delete(text):
 #    await send_to_telegram_suspended(text)
